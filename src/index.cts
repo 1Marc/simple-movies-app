@@ -6,7 +6,7 @@ import { getPopularMovies } from "./api.cjs";
 // define a route handler for the default home page
 app.get("/", (req, res) => {
   console.log("requested update ");
-  res.render("index");
+  res.render("pages/index");
 });
 
 app.get("/api/movies", async (req, res) => {
