@@ -1,10 +1,7 @@
-import express from "express";
-import path from "path";
-const app = express();
-const port = 1337; // default port to listen
-
-app.set("view engine", "ejs");
-app.use(express.static(path.join(__dirname, "public")));
+import * as dotenv from "dotenv";
+dotenv.config();
+import { app } from "./server.cjs";
+import { getPopularMovies } from "./api.cjs";
 
 // define a route handler for the default home page
 app.get("/", (req, res) => {
@@ -12,7 +9,7 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-// start the Express server
-app.listen(port, () => {
-  console.log(`server started at http://localhost:${port}`);
+app.get("/api/movies", async (req, res) => {
+  const movies = await getPopularMovies();
+  res.json(movies);
 });
