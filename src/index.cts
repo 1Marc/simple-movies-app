@@ -2,14 +2,27 @@ import * as dotenv from "dotenv";
 dotenv.config();
 import { app } from "./server.cjs";
 import { getPopularMovies } from "./api.cjs";
+import { RouteShorthandOptions } from "fastify";
+
+// const opts: RouteShorthandOptions = {
+//   schema: {
+//     response: {
+//       200: {
+//         type: "object",
+//         properties: {
+//           hello: { type: "string" },
+//         },
+//       },
+//     },
+//   },
+// };
 
 // define a route handler for the default home page
-app.get("/", (req, res) => {
-  console.log("requested update ");
-  res.render("pages/index");
+app.get("/", (req, reply) => {
+  reply.view("/views/pages/index.ejs", { text: "text" });
 });
 
-app.get("/api/movies", async (req, res) => {
+app.get("/api/movies", async (req, reply) => {
   const movies = await getPopularMovies();
-  res.json(movies);
+  reply.send(movies);
 });
