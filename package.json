@@ -5,10 +5,10 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node build/index.cjs",
+    "start": "node dist/index.cjs",
     "build": "npx tsc",
     "lint": "npx eslint src/*.cts",
-    "dev": "rm -Rf ./build && npx tsc-watch --noClear -p ./tsconfig.json --onSuccess \"npm start\"",
+    "dev": "rm -Rf ./dist && npx tsc-watch --noClear -p ./tsconfig.json --onSuccess \"npm start\"",
     "format": "npx prettier --config .prettierrc 'src/*.cts' --write"
   },
   "author": "Marc Grabanski",
