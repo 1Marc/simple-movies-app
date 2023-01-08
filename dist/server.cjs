@@ -9,12 +9,21 @@ const port = 1337;
 const view_1 = __importDefault(require("@fastify/view"));
 const static_1 = __importDefault(require("@fastify/static"));
 const path_1 = __importDefault(require("path"));
+const handlebars_1 = __importDefault(require("handlebars"));
 exports.app = (0, fastify_1.default)({
     logger: true,
 });
 exports.app.register(view_1.default, {
     engine: {
-        ejs: require("ejs"),
+        handlebars: handlebars_1.default,
+    },
+    includeViewExtension: true,
+    options: {
+        partials: {
+            head: "/views/partials/head.hbs",
+            header: "/views/partials/header.hbs",
+            footer: "/views/partials/footer.hbs",
+        },
     },
 });
 exports.app.register(static_1.default, {

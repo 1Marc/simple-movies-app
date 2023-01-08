@@ -28,7 +28,7 @@ dotenv.config();
 const server_cjs_1 = require("./server.cjs");
 const api_cjs_1 = require("./api.cjs");
 server_cjs_1.app.get("/", (req, reply) => {
-    reply.view("/views/pages/index.ejs", { text: "text" });
+    reply.view("/views/index.handlebars", { text: "text" });
 });
 server_cjs_1.app.get("/api/movies", async (req, reply) => {
     const movies = await (0, api_cjs_1.getPopularMovies)();

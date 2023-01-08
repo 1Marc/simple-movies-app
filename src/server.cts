@@ -3,6 +3,7 @@ const port = 1337; // default port to listen
 import fastifyView from "@fastify/view";
 import fasitfyStatic from "@fastify/static";
 import path from "path";
+import handlebars from "handlebars";
 
 export const app: FastifyInstance = Fastify({
   logger: true,
@@ -11,7 +12,15 @@ export const app: FastifyInstance = Fastify({
 // register the view engine
 app.register(fastifyView, {
   engine: {
-    ejs: require("ejs"),
+    handlebars: handlebars,
+  },
+  includeViewExtension: true,
+  options: {
+    partials: {
+      head: "/views/partials/head.hbs",
+      header: "/views/partials/header.hbs",
+      footer: "/views/partials/footer.hbs",
+    },
   },
 });
 
