@@ -22,13 +22,12 @@ app.get("/", (req, reply) => {
   reply.view("index");
 });
 
+app.get("/movies", async function (req, reply) {
+  const movies = await getPopularMovies();
+  return reply.view("movies", { movies: movies.results });
+});
+
 app.get("/api/movies", async function (req, reply) {
   const movies = await getPopularMovies();
   reply.send(movies);
-});
-
-app.get("/movies", async function (req, reply) {
-  const movies = await getPopularMovies();
-  console.log(movies.results[0]);
-  return reply.view("movies", { movies: movies.results });
 });
