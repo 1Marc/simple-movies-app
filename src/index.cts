@@ -19,10 +19,15 @@ import { getPopularMovies } from "./api.cjs";
 
 // define a route handler for the default home page
 app.get("/", (req, reply) => {
-  reply.view("/views/index.handlebars", { text: "text" });
+  reply.view("index");
 });
 
-app.get("/api/movies", async (req, reply) => {
+app.get("/api/movies", async function (req, reply) {
   const movies = await getPopularMovies();
   reply.send(movies);
+});
+
+app.get("/movies", async function (req, reply) {
+  const movies = await getPopularMovies();
+  reply.view("movies");
 });

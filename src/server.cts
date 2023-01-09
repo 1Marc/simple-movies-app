@@ -15,12 +15,16 @@ app.register(fastifyView, {
     handlebars: handlebars,
   },
   includeViewExtension: true,
+  root: path.join(__dirname, "../views"),
+  viewExt: "hbs",
   options: {
     partials: {
-      head: "/views/partials/head.hbs",
-      header: "/views/partials/header.hbs",
-      footer: "/views/partials/footer.hbs",
+      head: "partials/head.hbs",
+      header: "partials/header.hbs",
+      footer: "partials/footer.hbs",
     },
+    // WHY DOESNT THIS WORK so I don't have to do the above??
+    partialsDir: path.join(__dirname, "../views/partials"),
   },
 });
 

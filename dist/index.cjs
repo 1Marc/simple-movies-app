@@ -28,10 +28,14 @@ dotenv.config();
 const server_cjs_1 = require("./server.cjs");
 const api_cjs_1 = require("./api.cjs");
 server_cjs_1.app.get("/", (req, reply) => {
-    reply.view("/views/index.handlebars", { text: "text" });
+    reply.view("index");
 });
-server_cjs_1.app.get("/api/movies", async (req, reply) => {
+server_cjs_1.app.get("/api/movies", async function (req, reply) {
     const movies = await (0, api_cjs_1.getPopularMovies)();
     reply.send(movies);
+});
+server_cjs_1.app.get("/movies", async function (req, reply) {
+    const movies = await (0, api_cjs_1.getPopularMovies)();
+    reply.view("movies");
 });
 //# sourceMappingURL=index.cjs.map

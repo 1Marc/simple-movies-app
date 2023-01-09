@@ -18,12 +18,15 @@ exports.app.register(view_1.default, {
         handlebars: handlebars_1.default,
     },
     includeViewExtension: true,
+    root: path_1.default.join(__dirname, "../views"),
+    viewExt: "hbs",
     options: {
         partials: {
-            head: "/views/partials/head.hbs",
-            header: "/views/partials/header.hbs",
-            footer: "/views/partials/footer.hbs",
+            head: "partials/head.hbs",
+            header: "partials/header.hbs",
+            footer: "partials/footer.hbs",
         },
+        partialsDir: path_1.default.join(__dirname, "../views/partials"),
     },
 });
 exports.app.register(static_1.default, {

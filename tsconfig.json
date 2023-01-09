@@ -7,7 +7,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "sourceMap": true,
-    "noImplicitAny": true,
+    // "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
     "outDir": "./dist"
