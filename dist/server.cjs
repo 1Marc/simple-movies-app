@@ -10,8 +10,14 @@ const view_1 = __importDefault(require("@fastify/view"));
 const static_1 = __importDefault(require("@fastify/static"));
 const path_1 = __importDefault(require("path"));
 const handlebars_1 = __importDefault(require("handlebars"));
+const fs_1 = __importDefault(require("fs"));
 exports.app = (0, fastify_1.default)({
     logger: true,
+});
+const partialsFiles = fs_1.default.readdirSync("views/partials");
+let partials = {};
+partialsFiles.forEach((name) => {
+    partials[name.slice(0, name.indexOf(".hbs"))] = `partials/${name}`;
 });
 exports.app.register(view_1.default, {
     engine: {
@@ -20,14 +26,7 @@ exports.app.register(view_1.default, {
     includeViewExtension: true,
     root: path_1.default.join(__dirname, "../views"),
     viewExt: "hbs",
-    options: {
-        partials: {
-            head: "partials/head.hbs",
-            header: "partials/header.hbs",
-            footer: "partials/footer.hbs",
-        },
-        partialsDir: path_1.default.join(__dirname, "../views/partials"),
-    },
+    options: { partials },
 });
 exports.app.register(static_1.default, {
     root: path_1.default.join(__dirname, "../public"),

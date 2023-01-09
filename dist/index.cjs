@@ -36,6 +36,6 @@ server_cjs_1.app.get("/api/movies", async function (req, reply) {
 });
 server_cjs_1.app.get("/movies", async function (req, reply) {
     const movies = await (0, api_cjs_1.getPopularMovies)();
-    reply.view("movies");
+    return reply.view("movies", { movies });
 });
 //# sourceMappingURL=index.cjs.map

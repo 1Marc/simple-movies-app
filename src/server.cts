@@ -4,9 +4,17 @@ import fastifyView from "@fastify/view";
 import fasitfyStatic from "@fastify/static";
 import path from "path";
 import handlebars from "handlebars";
+import fs from "fs";
 
 export const app: FastifyInstance = Fastify({
   logger: true,
+});
+
+// why dont they just have a partialsDir option?
+const partialsFiles = fs.readdirSync("views/partials");
+let partials = {};
+partialsFiles.forEach((name) => {
+  partials[name.slice(0, name.indexOf(".hbs"))] = `partials/${name}`;
 });
 
 // register the view engine
@@ -17,15 +25,7 @@ app.register(fastifyView, {
   includeViewExtension: true,
   root: path.join(__dirname, "../views"),
   viewExt: "hbs",
-  options: {
-    partials: {
-      head: "partials/head.hbs",
-      header: "partials/header.hbs",
-      footer: "partials/footer.hbs",
-    },
-    // WHY DOESNT THIS WORK so I don't have to do the above??
-    partialsDir: path.join(__dirname, "../views/partials"),
-  },
+  options: { partials },
 });
 
 app.register(fasitfyStatic, {
