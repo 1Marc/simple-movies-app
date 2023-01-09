@@ -30,13 +30,12 @@ const api_cjs_1 = require("./api.cjs");
 server_cjs_1.app.get("/", (req, reply) => {
     reply.view("index");
 });
+server_cjs_1.app.get("/movies", async function (req, reply) {
+    const movies = await (0, api_cjs_1.getPopularMovies)();
+    return reply.view("movies", { movies: movies.results });
+});
 server_cjs_1.app.get("/api/movies", async function (req, reply) {
     const movies = await (0, api_cjs_1.getPopularMovies)();
     reply.send(movies);
-});
-server_cjs_1.app.get("/movies", async function (req, reply) {
-    const movies = await (0, api_cjs_1.getPopularMovies)();
-    console.log(movies.results[0]);
-    return reply.view("movies", { movies: movies.results });
 });
 //# sourceMappingURL=index.cjs.map
