@@ -29,5 +29,6 @@ app.get("/api/movies", async function (req, reply) {
 
 app.get("/movies", async function (req, reply) {
   const movies = await getPopularMovies();
-  return reply.view("movies", { movies });
+  console.log(movies.results[0]);
+  return reply.view("movies", { movies: movies.results });
 });
