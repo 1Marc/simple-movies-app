@@ -1,5 +1,5 @@
-# Movies App as Simple as I Can
+# Movies App
 
-Fastify
-TypeScript
-Handlebars
+- Fastify
+- TypeScript
+- Handlebars
